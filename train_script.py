@@ -27,7 +27,7 @@ from torch.utils.data import Dataset, DataLoader
 from torch.utils.data.distributed import DistributedSampler
 
 # Helps identify size of cluster and if this process is the root (rank 0) process.
-world_size = int(os.environ["WORLD_SIZE"]) 
+WORLD_SIZE = int(os.environ["WORLD_SIZE"]) 
 RANK = int(os.environ["RANK"])
 LOCAL_RANK = int(os.environ["LOCAL_RANK"] or 0)
 # parameters (TODO: hyperparameter search with self-guided genetic algorithm)
@@ -198,11 +198,14 @@ def train(train_loader, model, criterion, optimizer, device):
         X = X.to(device)
         y_true = y_true.to(device)
     
+        # https://github.com/pytorch/pytorch/issues/30439
         def closure():
-            y_hat, _ = model(X) 
             optimizer.zero_grad()
+            y_hat, _ = model(X) 
             loss = criterion(y_hat, y_true)            
             loss.backward()
+            torch.distributed.all_reduce(loss)
+            loss /= WORLD_SIZE
             return loss
 
         loss = optimizer.step(closure)
@@ -336,6 +339,7 @@ def run():
     model = LeNet5(N_CLASSES).to(device)
     # optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
     # Consider optimizer = torch.optim.LBFGS((loc_param,), lr=0.1, max_iter=500, tolerance_grad=1e-3)
+    # Ideas from this discussion: https://github.com/pytorch/pytorch/issues/30439
     optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=50, tolerance_grad=1e-3)
     # 1) That wasn't right, because we're not dealing with rrefs, 2) Makes more sense for individual nodes to have their own optimizers since we're pooling weights
     #optimizer = DistributedOptimizer(torch.optim.Adam, model.parameters(), lr=LEARNING_RATE)
@@ -358,10 +362,10 @@ def init():
     ## By setting device tensor.to(device) should always work correctly for CPU and GPU
     if (torch.cuda.device_count() > 0):
         device = torch.device("cuda:{}".format(LOCAL_RANK))
-        dist.init_process_group(backend="nccl")
+        dist.init_process_group(backend="nccl", rank=RANK, world_size=WORLD_SIZE)
     else:
         device = torch.device("cpu")
-        dist.init_process_group(backend="gloo")
+        dist.init_process_group(backend="gloo", rank=RANK, world_size=WORLD_SIZE)
     print("Started process " + str(RANK))
     
 if __name__ == "__main__":
