@@ -39,7 +39,7 @@ N_EPOCHS = 15
 
 IMG_SIZE = 32
 N_CLASSES = 1000
-DATA_PATH = "/Users/brobert/Desktop/IMAGENET"
+DATA_PATH = "/s/chopin/b/grad/bdvision/Downloads"
 TRAIN_PATH = DATA_PATH + "/Imagenet" + str(IMG_SIZE) + "_train"
 VAL_PATH = os.path.join(DATA_PATH, 'val_data')
 
@@ -275,7 +275,7 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
     # Train model
     for epoch in range(epochs):
         for batch_no in range(10):
-#            print(f'{datetime.now().time().replace(microsecond=0)} --- PID {LOCAL_RANK}; epoch {epoch}, batch {batch_no}');
+#            print(f'{datetime.now().time().replace(microsecond=0)} --- PID {RANK}; epoch {epoch}, batch {batch_no}');
             batch = load_databatch(TRAIN_PATH, batch_no+1)
             val_data = load_valdata(VAL_PATH, batch['mean'])
 
@@ -310,7 +310,7 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
 # TODO: Add model save, etc from https://github.com/pytorch/examples/blob/main/distributed/ddp-tutorial-series/multinode.py
 #            if LOCAL_RANK == 0 and epoch % self.save_every == 0:
 #                self._save_snapshot(epoch)
-        if LOCAL_RANK == 0 :
+        if RANK == 0 :
             torch.save(model, "model.pt")
             train_acc = get_accuracy(model, train_loader, device=device)
             valid_acc = get_accuracy(model, valid_loader, device=device)
@@ -362,7 +362,7 @@ def init():
     else:
         device = torch.device("cpu")
         dist.init_process_group(backend="gloo")
-    print("Started process " + str(LOCAL_RANK))
+    print("Started process " + str(RANK))
     
 if __name__ == "__main__":
     init()
