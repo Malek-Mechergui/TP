@@ -1,6 +1,5 @@
 ####
-# Start this program with torchrun, i.e.
-# torchrun 
+# Start this program with torchrun, see the run_distributed.sh script
 # 
 # Source inspired by:
 # - https://github.com/pytorch/examples/blob/main/distributed/ddp-tutorial-series/multinode.py
@@ -336,7 +335,8 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
 def run():
     model = LeNet5(N_CLASSES).to(device)
     # optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE)
+    # Consider optimizer = torch.optim.LBFGS((loc_param,), lr=0.1, max_iter=500, tolerance_grad=1e-3)
+    optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=50, tolerance_grad=1e-3)
     # 1) That wasn't right, because we're not dealing with rrefs, 2) Makes more sense for individual nodes to have their own optimizers since we're pooling weights
     #optimizer = DistributedOptimizer(torch.optim.Adam, model.parameters(), lr=LEARNING_RATE)
     criterion = nn.CrossEntropyLoss()
