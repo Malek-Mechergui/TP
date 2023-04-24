@@ -15,5 +15,5 @@ for host in ${HOSTS[@]}; do
         --rdzv_backend=c10d \
         --rdzv_endpoint=$RENDEVOUS_HOST \
         $TRAIN_SCRIPT "$@" &
-    ((RANK=RANK+1))
+    ((RANK=RANK+1))    
 done
