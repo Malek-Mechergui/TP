@@ -1,0 +1,44 @@
+LOCAL_RANK = int(os.environ["LOCAL_RANK"] or 0)
+# parameters (TODO: hyperparameter search with self-guided genetic algorithm)
+RANDOM_SEED = 42
+LEARNING_RATE = 0.01
+BATCH_SIZE = 64
+N_EPOCHS = 15
+
+IMG_SIZE = 32
+
+
+(base) austin:~/CS535/TP$ ./run_distributed.sh
+(base) austin:~/CS535/TP$ master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+Started process 2
+Started process 0
+Started process 1
+Started process 3
+./run_distributed.sh 00:07:50 --- Epoch: 0      Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:10:49 --- Epoch: 1   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:13:48 --- Epoch: 2   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:16:47 --- Epoch: 3   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:19:46 --- Epoch: 4   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:22:45 --- Epoch: 5   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:25:44 --- Epoch: 6   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:28:43 --- Epoch: 7   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:31:42 --- Epoch: 8   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:34:41 --- Epoch: 9   Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:37:40 --- Epoch: 10  Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:40:36 --- Epoch: 11  Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:43:39 --- Epoch: 12  Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:47:09 --- Epoch: 13  Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+00:51:14 --- Epoch: 14  Train loss: 6.9077      Valid loss: 6.9078      Train accuracy: 0.03    Valid accuracy: 0.03
+WARNING:torch.distributed.elastic.rendezvous.dynamic_rendezvous:The node 'hartford.cs.colostate.edu_196478_0' has failed to send a keep-alive heartbeat to
+ the rendezvous '42424' due to an error of type RendezvousTimeoutError.
+(base) austin:~/CS535/TP$ ./run_distributed.sh ls
+(base) austin:~/CS535/TP$ ^C
+(base) austin:~/CS535/TP$ ls
+ LeNet_IMAGENET.ipynb  'LeNet .ipynb'   run_distributed.sh   screenlog.0   screenlog.noconverg   stop_distributed.sh   train_script.py
+(base) austin:~/CS535/TP$ master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+^C
+(base) austin:~/CS535/TP$ ./stop_distributed.sh
+(base) austin:~/CS535/TP$

@@ -1,0 +1,24 @@
+./run_distributed.sh 
+(base) austin:~/CS535/TP$ master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+Started process 3
+Started process 2
+Started process 0
+Started process 1
+23:33:51 --- Epoch: 0	Train loss: 6.9087	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+
+(base) austin:~/CS535/TP$ ls
+ LeNet_IMAGENET.ipynb  'LeNet .ipynb'   run_distributed.sh   screenlog.0   stop_distributed.sh	 train_script.py
+(base) austin:~/CS535/TP$ fg
+bash: fg: current: no such job
+(base) austin:~/CS535/TP$ p[K23:38:07 --- Epoch: 1	Train loss: 6.9086	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+23:41:14 --- Epoch: 2	Train loss: 6.9087	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+23:44:03 --- Epoch: 3	Train loss: 6.9087	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+23:46:51 --- Epoch: 4	Train loss: 6.9087	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+23:49:40 --- Epoch: 5	Train loss: 6.9086	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+23:52:28 --- Epoch: 6	Train loss: 6.9086	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+23:55:16 --- Epoch: 7	Train loss: 6.9086	Valid loss: 6.9088	Train accuracy: 0.03	Valid accuracy: 0.04
+^C
+(base) austin:~/CS535/TP$ git pull[K[K[K[K[K[K[K[K./stop[K[K[K[K[K[K

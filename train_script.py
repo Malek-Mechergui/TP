@@ -32,7 +32,7 @@ RANK = int(os.environ["RANK"])
 LOCAL_RANK = int(os.environ["LOCAL_RANK"] or 0)
 # parameters (TODO: hyperparameter search with self-guided genetic algorithm)
 RANDOM_SEED = 42
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.001
 BATCH_SIZE = 64
 N_EPOCHS = 15
 
@@ -133,8 +133,8 @@ class LeNet5(nn.Module):
 
     def __init__(self, n_classes):
         super(LeNet5, self).__init__()
-        
-        self.feature_extractor = nn.Sequential(            
+
+        self.feature_extractor = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=6, kernel_size=5, stride=1),
             nn.Tanh(),
             nn.AvgPool2d(kernel_size=2),
@@ -164,10 +164,10 @@ def get_accuracy(model, data_loader, device):
     '''
     Function for computing the accuracy of the predictions over the entire data_loader
     '''
-    
-    correct_pred = 0 
+
+    correct_pred = 0
     n = 0
-    
+
     with torch.no_grad():
         model.eval()
         for X, y_true in data_loader:
@@ -182,7 +182,7 @@ def get_accuracy(model, data_loader, device):
             correct_pred += (predicted_labels == y_true).sum()
 
     return correct_pred.float() / n
-    
+
 def train(train_loader, model, criterion, optimizer, device):
     '''
     Function for the training step of the training loop
@@ -190,19 +190,20 @@ def train(train_loader, model, criterion, optimizer, device):
 
     model.train()
     running_loss = 0
-    
+
     for X, y_true in train_loader:
 
         # optimizer.zero_grad()
-        
         X = X.to(device)
         y_true = y_true.to(device)
-    
+
+        '''
+        # Needed for L-BFGS
         # https://github.com/pytorch/pytorch/issues/30439
         def closure():
             optimizer.zero_grad()
-            y_hat, _ = model(X) 
-            loss = criterion(y_hat, y_true)            
+            y_hat, _ = model(X)
+            loss = criterion(y_hat, y_true)
             loss.backward()
             torch.distributed.all_reduce(loss)
             loss /= WORLD_SIZE
@@ -213,21 +214,21 @@ def train(train_loader, model, criterion, optimizer, device):
 
         # The following works for ADAM optimizer, but not L-BFGS
         '''
-            # Forward pass
-            y_hat, _ = model(X) 
-            loss = criterion(y_hat, y_true) 
-            running_loss += loss.item() * X.size(0)
+        # Forward pass
+        optimizer.zero_grad()
+        y_hat, _ = model(X)
+        loss = criterion(y_hat, y_true)
+        running_loss += loss.item() * X.size(0)
 
-            # Backward pass
-            loss.backward()
-            optimizer.step()
+        # Backward pass
+        loss.backward()
+        optimizer.step()
+
         '''
-
         # Use distributed autograd (we're not using this at the moment)
-        '''
         with dist_autograd.context() as context_id:
-            y_hat, _ = model(X) 
-            loss = criterion(y_hat, y_true) 
+            y_hat, _ = model(X)
+            loss = criterion(y_hat, y_true)
             running_loss += loss.item() * X.size(0)
 
             # Backward pass
@@ -243,29 +244,28 @@ def validate(valid_loader, model, criterion, device):
     '''
     Function for the validation step of the training loop
     '''
-   
+
     model.eval()
     running_loss = 0
-    
+
     for X, y_true in valid_loader:
-    
         X = X.to(device)
         y_true = y_true.to(device)
 
         # Forward pass and record loss
-        y_hat, _ = model(X) 
-        loss = criterion(y_hat, y_true) 
+        y_hat, _ = model(X)
+        loss = criterion(y_hat, y_true)
         running_loss += loss.item() * X.size(0)
 
     epoch_loss = running_loss / len(valid_loader.dataset)
-        
+
     return model, epoch_loss
 
 def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
     '''
     Function defining the entire training loop
     '''
-    
+
     # set objects for storing metrics
  #   best_loss = 1e10
  #   best_epoch = 0
@@ -273,7 +273,7 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
     valid_losses = []
     train_accs = []
     valid_accs = []
- 
+
     # Train model
     for epoch in range(epochs):
         for batch_no in range(10):
@@ -322,35 +322,34 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
             torch.save(valid_losses, "valid_loss.pt")
             torch.save(train_accs, "train_accs.pt")
             torch.save(valid_accs, "valid_accs.pt")
-            if (epoch+1) % print_every == 0:            
+            if (epoch+1) % print_every == 0:
                 print(f'{datetime.now().time().replace(microsecond=0)} --- '
                     f'Epoch: {epoch}\t'
                     f'Train loss: {train_loss:.4f}\t'
                     f'Valid loss: {valid_loss:.4f}\t'
                     f'Train accuracy: {100 * train_acc:.2f}\t'
-                    f'Valid accuracy: {100 * valid_acc:.2f}')            
+                    f'Valid accuracy: {100 * valid_acc:.2f}')
 
     #plot_losses(train_losses, valid_losses)
-    
     return model, optimizer, (train_losses, valid_losses)
 
 ## ------------------------ Main program (init/run)
 def run():
-    model = LeNet5(N_CLASSES).to(device)
-    # optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    model = DDP(LeNet5(N_CLASSES).to(device))
+    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
     # Consider optimizer = torch.optim.LBFGS((loc_param,), lr=0.1, max_iter=500, tolerance_grad=1e-3)
     # Ideas from this discussion: https://github.com/pytorch/pytorch/issues/30439
-    optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=10, tolerance_grad=1e-1)
+    # optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=20, tolerance_grad=1e-2)
     # 1) That wasn't right, because we're not dealing with rrefs, 2) Makes more sense for individual nodes to have their own optimizers since we're pooling weights
     #optimizer = DistributedOptimizer(torch.optim.Adam, model.parameters(), lr=LEARNING_RATE)
     criterion = nn.CrossEntropyLoss()
 
     ### Partial starting point for DDP example
     #ddp_model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[LOCAL_RANK], output_device=LOCAL_RANK)
-    ddp_model = DDP(model)
+    #ddp_model = DDP(model)
     # Note: the training loop sets up the distributed sampler with the data set, in some examples you'd see that here
     # It works this way becasue the data set is not loaded all at once and instead is loaded in the training loop in batches,
-    model, optimizer, results = training_loop(ddp_model, criterion, optimizer, N_EPOCHS, device)
+    model, optimizer, results = training_loop(model, criterion, optimizer, N_EPOCHS, device)
 
     # TODO: save results so they can be graphed, etc
 
@@ -367,7 +366,7 @@ def init():
         device = torch.device("cpu")
         dist.init_process_group(backend="gloo", rank=RANK, world_size=WORLD_SIZE)
     print("Started process " + str(RANK))
-    
+
 if __name__ == "__main__":
     init()
     run()
