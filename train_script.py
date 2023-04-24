@@ -32,7 +32,7 @@ RANK = int(os.environ["RANK"])
 LOCAL_RANK = int(os.environ["LOCAL_RANK"] or 0)
 # parameters (TODO: hyperparameter search with self-guided genetic algorithm)
 RANDOM_SEED = 42
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.01
 BATCH_SIZE = 64
 N_EPOCHS = 15
 
@@ -277,7 +277,7 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
     # Train model
     for epoch in range(epochs):
         for batch_no in range(10):
-#            print(f'{datetime.now().time().replace(microsecond=0)} --- PID {RANK}; epoch {epoch}, batch {batch_no}');
+            print(f'{datetime.now().time().replace(microsecond=0)} --- PID {RANK}; epoch {epoch}, batch {batch_no}');
             batch = load_databatch(TRAIN_PATH, batch_no+1)
             val_data = load_valdata(VAL_PATH, batch['mean'])
 
@@ -340,7 +340,7 @@ def run():
     # optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
     # Consider optimizer = torch.optim.LBFGS((loc_param,), lr=0.1, max_iter=500, tolerance_grad=1e-3)
     # Ideas from this discussion: https://github.com/pytorch/pytorch/issues/30439
-    optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=50, tolerance_grad=1e-3)
+    optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=10, tolerance_grad=1e-1)
     # 1) That wasn't right, because we're not dealing with rrefs, 2) Makes more sense for individual nodes to have their own optimizers since we're pooling weights
     #optimizer = DistributedOptimizer(torch.optim.Adam, model.parameters(), lr=LEARNING_RATE)
     criterion = nn.CrossEntropyLoss()
