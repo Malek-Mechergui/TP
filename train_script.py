@@ -274,7 +274,7 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
  
     # Train model
     for epoch in range(epochs):
-        for batch_no in range(1):
+        for batch_no in range(10):
 #            print(f'{datetime.now().time().replace(microsecond=0)} --- PID {LOCAL_RANK}; epoch {epoch}, batch {batch_no}');
             batch = load_databatch(TRAIN_PATH, batch_no+1)
             val_data = load_valdata(VAL_PATH, batch['mean'])
