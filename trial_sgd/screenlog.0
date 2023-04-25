@@ -1,0 +1,774 @@
+cd ..
+(base) jefferson-city:~/CS535/TP$ ./run_distributedd[K2.sh 
+(base) jefferson-city:~/CS535/TP$ ^C
+(base) jefferson-city:~/CS535/TP$ ,./master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+[K[K./stmaster_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+op^C
+(base) jefferson-city:~/CS535/TP$ Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/CS535/TP/train_script.py", line 361, in <module>
+    opt = sys.argv[1] if len(sys.argv) > 0 else "adam"
+IndexError: list index out of range
+Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/CS535/TP/train_script.py", line 361, in <module>
+    opt = sys.argv[1] if len(sys.argv) > 0 else "adam"
+IndexError: list index out of range
+Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/CS535/TP/train_script.py", line 361, in <module>
+    opt = sys.argv[1] if len(sys.argv) > 0 else "adam"
+IndexError: list index out of range
+
+(base) jefferson-city:~/CS535/TP$ Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/CS535/TP/train_script.py", line 361, in <module>
+    opt = sys.argv[1] if len(sys.argv) > 0 else "adam"
+IndexError: list index out of range
+./[K[KERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 287552) of binary: /s/chopin/b/grad/bdvision/miniconda3/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 267541) of binary: /s/chopin/b/grad/bdvision/miniconda3/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 345646) of binary: /s/chopin/b/grad/bdvision/miniconda3/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 285068) of binary: /s/chopin/b/grad/bdvision/miniconda3/bin/python
+Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/miniconda3/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 785, in run
+Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/miniconda3/bin/torchrun", line 8, in <module>
+    elastic_launch(
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/miniconda3/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+Traceback (most recent call last):
+  File "/s/chopin/b/grad/bdvision/miniconda3/bin/torchrun", line 8, in <module>
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/s/chopin/b/grad/bdvision/CS535/TP/train_script.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-24_20:27:45
+  host      : lincoln.cs.colostate.edu
+  rank      : 2 (local_rank: 0)
+  exitcode  : 1 (pid: 267541)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+    sys.exit(main())
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 794, in main
+    sys.exit(main())
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 794, in main
+    return f(*args, **kwargs)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 785, in run
+    run(args)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 785, in run
+    run(args)
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    elastic_launch(
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    elastic_launch(
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/s/chopin/b/grad/bdvision/CS535/TP/train_script.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-24_20:27:45
+  host      : little-rock.cs.colostate.edu
+  rank      : 3 (local_rank: 0)
+  exitcode  : 1 (pid: 285068)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/s/chopin/b/grad/bdvision/CS535/TP/train_script.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-24_20:27:45
+  host      : lansing.cs.colostate.edu
+  rank      : 1 (local_rank: 0)
+  exitcode  : 1 (pid: 345646)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/s/chopin/b/grad/bdvision/miniconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/s/chopin/b/grad/bdvision/CS535/TP/train_script.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-24_20:27:45
+  host      : jefferson-city.cs.colostate.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 287552)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+(base) jefferson-city:~/CS535/TP$ 
+(base) jefferson-city:~/CS535/TP$ ./run_distributed2.sh sgd
+(base) jefferson-city:~/CS535/TP$ master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+Output will be saved in /s/chopin/b/grad/bdvision/out/sgd_2328
+Started process 2
+Started process 1
+Started process 0
+Started process 3
+Configured sgd optimizer
+
+20:28:28 --- PID 0; epoch 0, batch 0
+20:28:28 --- PID 2; epoch 0, batch 0
+20:28:28 --- PID 1; epoch 0, batch 0
+20:28:28 --- PID 3; epoch 0, batch 0
+20:30:54 --- PID 1; epoch 0, batch 1
+20:30:54 --- PID 2; epoch 0, batch 1
+20:30:54 --- PID 0; epoch 0, batch 1
+20:30:54 --- PID 3; epoch 0, batch 1
+20:33:05 --- PID 1; epoch 0, batch 2
+20:33:05 --- PID 2; epoch 0, batch 2
+20:33:05 --- PID 0; epoch 0, batch 2
+20:33:05 --- PID 3; epoch 0, batch 2
+20:35:16 --- PID 1; epoch 0, batch 3
+20:35:16 --- PID 2; epoch 0, batch 3
+20:35:16 --- PID 0; epoch 0, batch 3
+20:35:16 --- PID 3; epoch 0, batch 3
+20:37:28 --- PID 1; epoch 0, batch 4
+20:37:28 --- PID 2; epoch 0, batch 4
+20:37:28 --- PID 0; epoch 0, batch 4
+20:37:28 --- PID 3; epoch 0, batch 4
+20:39:39 --- PID 1; epoch 0, batch 5
+20:39:39 --- PID 2; epoch 0, batch 5
+20:39:39 --- PID 0; epoch 0, batch 5
+20:39:39 --- PID 3; epoch 0, batch 5
+20:41:50 --- PID 1; epoch 0, batch 6
+20:41:50 --- PID 2; epoch 0, batch 6
+20:41:50 --- PID 0; epoch 0, batch 6
+20:41:50 --- PID 3; epoch 0, batch 6
+20:44:01 --- PID 1; epoch 0, batch 7
+20:44:01 --- PID 2; epoch 0, batch 7
+20:44:01 --- PID 0; epoch 0, batch 7
+20:44:01 --- PID 3; epoch 0, batch 7
+20:46:12 --- PID 1; epoch 0, batch 8
+20:46:12 --- PID 2; epoch 0, batch 8
+20:46:12 --- PID 0; epoch 0, batch 8
+20:46:12 --- PID 3; epoch 0, batch 8
+20:48:23 --- PID 1; epoch 0, batch 9
+20:48:23 --- PID 2; epoch 0, batch 9
+20:48:23 --- PID 0; epoch 0, batch 9
+20:48:23 --- PID 3; epoch 0, batch 9
+20:50:34 --- PID 1; epoch 1, batch 0
+20:50:34 --- PID 2; epoch 1, batch 0
+20:50:34 --- PID 3; epoch 1, batch 0
+20:50:37 --- Epoch: 0	Train loss: 6.2602	Valid loss: 6.2619	Train accuracy: 0.24	Valid accuracy: 0.20
+20:50:37 --- PID 0; epoch 1, batch 0
+20:52:15 --- PID 1; epoch 1, batch 1
+20:52:15 --- PID 2; epoch 1, batch 1
+20:52:15 --- PID 0; epoch 1, batch 1
+20:52:15 --- PID 3; epoch 1, batch 1
+20:53:53 --- PID 1; epoch 1, batch 2
+20:53:53 --- PID 2; epoch 1, batch 2
+20:53:53 --- PID 0; epoch 1, batch 2
+20:53:53 --- PID 3; epoch 1, batch 2
+20:55:31 --- PID 1; epoch 1, batch 3
+20:55:31 --- PID 2; epoch 1, batch 3
+20:55:31 --- PID 0; epoch 1, batch 3
+20:55:31 --- PID 3; epoch 1, batch 3
+20:57:09 --- PID 1; epoch 1, batch 4
+20:57:09 --- PID 2; epoch 1, batch 4
+20:57:09 --- PID 0; epoch 1, batch 4
+20:57:09 --- PID 3; epoch 1, batch 4
+20:58:47 --- PID 1; epoch 1, batch 5
+20:58:47 --- PID 2; epoch 1, batch 5
+20:58:47 --- PID 0; epoch 1, batch 5
+20:58:47 --- PID 3; epoch 1, batch 5
+21:00:25 --- PID 1; epoch 1, batch 6
+21:00:25 --- PID 2; epoch 1, batch 6
+21:00:25 --- PID 0; epoch 1, batch 6
+21:00:25 --- PID 3; epoch 1, batch 6
+21:02:03 --- PID 1; epoch 1, batch 7
+21:02:03 --- PID 2; epoch 1, batch 7
+21:02:03 --- PID 0; epoch 1, batch 7
+21:02:03 --- PID 3; epoch 1, batch 7
+21:03:40 --- PID 1; epoch 1, batch 8
+21:03:40 --- PID 2; epoch 1, batch 8
+21:03:40 --- PID 0; epoch 1, batch 8
+21:03:40 --- PID 3; epoch 1, batch 8
+21:05:18 --- PID 1; epoch 1, batch 9
+21:05:18 --- PID 2; epoch 1, batch 9
+21:05:18 --- PID 0; epoch 1, batch 9
+21:05:18 --- PID 3; epoch 1, batch 9
+21:06:56 --- PID 1; epoch 2, batch 0
+21:06:56 --- PID 2; epoch 2, batch 0
+21:06:56 --- PID 3; epoch 2, batch 0
+21:06:59 --- Epoch: 1	Train loss: 6.2304	Valid loss: 6.2376	Train accuracy: 0.25	Valid accuracy: 0.20
+21:06:59 --- PID 0; epoch 2, batch 0
+21:08:36 --- PID 1; epoch 2, batch 1
+21:08:36 --- PID 2; epoch 2, batch 1
+21:08:36 --- PID 0; epoch 2, batch 1
+21:08:36 --- PID 3; epoch 2, batch 1
+21:10:15 --- PID 1; epoch 2, batch 2
+21:10:15 --- PID 2; epoch 2, batch 2
+21:10:15 --- PID 0; epoch 2, batch 2
+21:10:15 --- PID 3; epoch 2, batch 2
+21:11:53 --- PID 1; epoch 2, batch 3
+21:11:53 --- PID 2; epoch 2, batch 3
+21:11:53 --- PID 0; epoch 2, batch 3
+21:11:53 --- PID 3; epoch 2, batch 3
+21:13:31 --- PID 1; epoch 2, batch 4
+21:13:31 --- PID 2; epoch 2, batch 4
+21:13:31 --- PID 0; epoch 2, batch 4
+21:13:31 --- PID 3; epoch 2, batch 4
+21:15:09 --- PID 1; epoch 2, batch 5
+21:15:09 --- PID 2; epoch 2, batch 5
+21:15:09 --- PID 0; epoch 2, batch 5
+21:15:09 --- PID 3; epoch 2, batch 5
+21:16:46 --- PID 1; epoch 2, batch 6
+21:16:46 --- PID 2; epoch 2, batch 6
+21:16:46 --- PID 0; epoch 2, batch 6
+21:16:46 --- PID 3; epoch 2, batch 6
+21:18:25 --- PID 1; epoch 2, batch 7
+21:18:25 --- PID 2; epoch 2, batch 7
+21:18:25 --- PID 0; epoch 2, batch 7
+21:18:25 --- PID 3; epoch 2, batch 7
+21:20:03 --- PID 1; epoch 2, batch 8
+21:20:03 --- PID 2; epoch 2, batch 8
+21:20:03 --- PID 0; epoch 2, batch 8
+21:20:03 --- PID 3; epoch 2, batch 8
+21:21:40 --- PID 1; epoch 2, batch 9
+21:21:40 --- PID 2; epoch 2, batch 9
+21:21:40 --- PID 0; epoch 2, batch 9
+21:21:40 --- PID 3; epoch 2, batch 9
+21:23:19 --- PID 1; epoch 3, batch 0
+21:23:19 --- PID 2; epoch 3, batch 0
+21:23:19 --- PID 3; epoch 3, batch 0
+21:23:22 --- Epoch: 2	Train loss: 6.2238	Valid loss: 6.2312	Train accuracy: 0.25	Valid accuracy: 0.20
+21:23:22 --- PID 0; epoch 3, batch 0
+21:24:59 --- PID 1; epoch 3, batch 1
+21:24:59 --- PID 2; epoch 3, batch 1
+21:24:59 --- PID 0; epoch 3, batch 1
+21:24:59 --- PID 3; epoch 3, batch 1
+21:26:37 --- PID 1; epoch 3, batch 2
+21:26:37 --- PID 2; epoch 3, batch 2
+21:26:37 --- PID 0; epoch 3, batch 2
+21:26:37 --- PID 3; epoch 3, batch 2
+21:28:15 --- PID 1; epoch 3, batch 3
+21:28:15 --- PID 2; epoch 3, batch 3
+21:28:15 --- PID 0; epoch 3, batch 3
+21:28:15 --- PID 3; epoch 3, batch 3
+21:29:53 --- PID 1; epoch 3, batch 4
+21:29:53 --- PID 2; epoch 3, batch 4
+21:29:53 --- PID 0; epoch 3, batch 4
+21:29:53 --- PID 3; epoch 3, batch 4
+21:31:31 --- PID 1; epoch 3, batch 5
+21:31:31 --- PID 2; epoch 3, batch 5
+21:31:31 --- PID 0; epoch 3, batch 5
+21:31:31 --- PID 3; epoch 3, batch 5
+21:33:08 --- PID 1; epoch 3, batch 6
+21:33:08 --- PID 2; epoch 3, batch 6
+21:33:08 --- PID 0; epoch 3, batch 6
+21:33:08 --- PID 3; epoch 3, batch 6
+21:34:47 --- PID 1; epoch 3, batch 7
+21:34:47 --- PID 2; epoch 3, batch 7
+21:34:47 --- PID 0; epoch 3, batch 7
+21:34:47 --- PID 3; epoch 3, batch 7
+21:36:24 --- PID 1; epoch 3, batch 8
+21:36:24 --- PID 2; epoch 3, batch 8
+21:36:24 --- PID 0; epoch 3, batch 8
+21:36:24 --- PID 3; epoch 3, batch 8
+21:38:02 --- PID 1; epoch 3, batch 9
+21:38:02 --- PID 2; epoch 3, batch 9
+21:38:02 --- PID 0; epoch 3, batch 9
+21:38:02 --- PID 3; epoch 3, batch 9
+21:39:40 --- PID 1; epoch 4, batch 0
+21:39:40 --- PID 2; epoch 4, batch 0
+21:39:40 --- PID 3; epoch 4, batch 0
+21:39:41 --- Epoch: 3	Train loss: 6.2204	Valid loss: 6.2281	Train accuracy: 0.25	Valid accuracy: 0.20
+21:39:41 --- PID 0; epoch 4, batch 0
+21:41:19 --- PID 1; epoch 4, batch 1
+21:41:19 --- PID 2; epoch 4, batch 1
+21:41:19 --- PID 0; epoch 4, batch 1
+21:41:19 --- PID 3; epoch 4, batch 1
+21:42:57 --- PID 1; epoch 4, batch 2
+21:42:57 --- PID 2; epoch 4, batch 2
+21:42:57 --- PID 0; epoch 4, batch 2
+21:42:57 --- PID 3; epoch 4, batch 2
+21:44:35 --- PID 1; epoch 4, batch 3
+21:44:35 --- PID 2; epoch 4, batch 3
+21:44:35 --- PID 0; epoch 4, batch 3
+21:44:35 --- PID 3; epoch 4, batch 3
+21:46:13 --- PID 1; epoch 4, batch 4
+21:46:13 --- PID 2; epoch 4, batch 4
+21:46:13 --- PID 0; epoch 4, batch 4
+21:46:13 --- PID 3; epoch 4, batch 4
+21:47:50 --- PID 1; epoch 4, batch 5
+21:47:50 --- PID 2; epoch 4, batch 5
+21:47:50 --- PID 0; epoch 4, batch 5
+21:47:50 --- PID 3; epoch 4, batch 5
+21:49:28 --- PID 1; epoch 4, batch 6
+21:49:28 --- PID 2; epoch 4, batch 6
+21:49:28 --- PID 0; epoch 4, batch 6
+21:49:28 --- PID 3; epoch 4, batch 6
+21:51:06 --- PID 1; epoch 4, batch 7
+21:51:06 --- PID 2; epoch 4, batch 7
+21:51:06 --- PID 0; epoch 4, batch 7
+21:51:06 --- PID 3; epoch 4, batch 7
+21:52:44 --- PID 1; epoch 4, batch 8
+21:52:44 --- PID 2; epoch 4, batch 8
+21:52:44 --- PID 0; epoch 4, batch 8
+21:52:44 --- PID 3; epoch 4, batch 8
+21:54:22 --- PID 1; epoch 4, batch 9
+21:54:22 --- PID 2; epoch 4, batch 9
+21:54:22 --- PID 0; epoch 4, batch 9
+21:54:22 --- PID 3; epoch 4, batch 9
+21:56:00 --- PID 1; epoch 5, batch 0
+21:56:00 --- PID 2; epoch 5, batch 0
+21:56:00 --- PID 3; epoch 5, batch 0
+21:56:02 --- Epoch: 4	Train loss: 6.2185	Valid loss: 6.2264	Train accuracy: 0.25	Valid accuracy: 0.20
+21:56:02 --- PID 0; epoch 5, batch 0
+21:57:40 --- PID 1; epoch 5, batch 1
+21:57:40 --- PID 2; epoch 5, batch 1
+21:57:40 --- PID 0; epoch 5, batch 1
+21:57:40 --- PID 3; epoch 5, batch 1
+21:59:18 --- PID 1; epoch 5, batch 2
+21:59:18 --- PID 2; epoch 5, batch 2
+21:59:18 --- PID 0; epoch 5, batch 2
+21:59:18 --- PID 3; epoch 5, batch 2
+22:00:56 --- PID 1; epoch 5, batch 3
+22:00:56 --- PID 2; epoch 5, batch 3
+22:00:56 --- PID 0; epoch 5, batch 3
+22:00:56 --- PID 3; epoch 5, batch 3
+22:02:34 --- PID 1; epoch 5, batch 4
+22:02:34 --- PID 2; epoch 5, batch 4
+22:02:34 --- PID 0; epoch 5, batch 4
+22:02:34 --- PID 3; epoch 5, batch 4
+22:04:12 --- PID 1; epoch 5, batch 5
+22:04:12 --- PID 2; epoch 5, batch 5
+22:04:12 --- PID 0; epoch 5, batch 5
+22:04:12 --- PID 3; epoch 5, batch 5
+22:05:49 --- PID 1; epoch 5, batch 6
+22:05:49 --- PID 2; epoch 5, batch 6
+22:05:49 --- PID 0; epoch 5, batch 6
+22:05:49 --- PID 3; epoch 5, batch 6
+22:07:27 --- PID 1; epoch 5, batch 7
+22:07:27 --- PID 2; epoch 5, batch 7
+22:07:27 --- PID 0; epoch 5, batch 7
+22:07:27 --- PID 3; epoch 5, batch 7
+22:09:05 --- PID 1; epoch 5, batch 8
+22:09:05 --- PID 2; epoch 5, batch 8
+22:09:05 --- PID 0; epoch 5, batch 8
+22:09:05 --- PID 3; epoch 5, batch 8
+22:10:43 --- PID 1; epoch 5, batch 9
+22:10:43 --- PID 2; epoch 5, batch 9
+22:10:43 --- PID 0; epoch 5, batch 9
+22:10:43 --- PID 3; epoch 5, batch 9
+22:12:21 --- PID 1; epoch 6, batch 0
+22:12:21 --- PID 2; epoch 6, batch 0
+22:12:21 --- PID 3; epoch 6, batch 0
+22:12:23 --- Epoch: 5	Train loss: 6.2177	Valid loss: 6.2253	Train accuracy: 0.25	Valid accuracy: 0.20
+22:12:23 --- PID 0; epoch 6, batch 0
+22:14:01 --- PID 1; epoch 6, batch 1
+22:14:01 --- PID 2; epoch 6, batch 1
+22:14:01 --- PID 0; epoch 6, batch 1
+22:14:01 --- PID 3; epoch 6, batch 1
+22:15:39 --- PID 1; epoch 6, batch 2
+22:15:39 --- PID 2; epoch 6, batch 2
+22:15:39 --- PID 0; epoch 6, batch 2
+22:15:39 --- PID 3; epoch 6, batch 2
+22:17:17 --- PID 1; epoch 6, batch 3
+22:17:17 --- PID 2; epoch 6, batch 3
+22:17:17 --- PID 0; epoch 6, batch 3
+22:17:17 --- PID 3; epoch 6, batch 3
+22:18:55 --- PID 1; epoch 6, batch 4
+22:18:55 --- PID 2; epoch 6, batch 4
+22:18:55 --- PID 0; epoch 6, batch 4
+22:18:55 --- PID 3; epoch 6, batch 4
+22:20:33 --- PID 1; epoch 6, batch 5
+22:20:33 --- PID 2; epoch 6, batch 5
+22:20:33 --- PID 0; epoch 6, batch 5
+22:20:33 --- PID 3; epoch 6, batch 5
+22:22:10 --- PID 1; epoch 6, batch 6
+22:22:10 --- PID 2; epoch 6, batch 6
+22:22:10 --- PID 0; epoch 6, batch 6
+22:22:10 --- PID 3; epoch 6, batch 6
+22:23:49 --- PID 1; epoch 6, batch 7
+22:23:49 --- PID 2; epoch 6, batch 7
+22:23:49 --- PID 0; epoch 6, batch 7
+22:23:49 --- PID 3; epoch 6, batch 7
+22:25:26 --- PID 1; epoch 6, batch 8
+22:25:26 --- PID 2; epoch 6, batch 8
+22:25:26 --- PID 0; epoch 6, batch 8
+22:25:26 --- PID 3; epoch 6, batch 8
+22:27:04 --- PID 1; epoch 6, batch 9
+22:27:04 --- PID 2; epoch 6, batch 9
+22:27:04 --- PID 0; epoch 6, batch 9
+22:27:04 --- PID 3; epoch 6, batch 9
+22:28:42 --- PID 1; epoch 7, batch 0
+22:28:42 --- PID 2; epoch 7, batch 0
+22:28:42 --- PID 3; epoch 7, batch 0
+22:28:44 --- Epoch: 6	Train loss: 6.2166	Valid loss: 6.2245	Train accuracy: 0.25	Valid accuracy: 0.20
+22:28:44 --- PID 0; epoch 7, batch 0
+22:30:22 --- PID 1; epoch 7, batch 1
+22:30:22 --- PID 2; epoch 7, batch 1
+22:30:22 --- PID 0; epoch 7, batch 1
+22:30:22 --- PID 3; epoch 7, batch 1
+22:32:00 --- PID 1; epoch 7, batch 2
+22:32:00 --- PID 2; epoch 7, batch 2
+22:32:00 --- PID 0; epoch 7, batch 2
+22:32:00 --- PID 3; epoch 7, batch 2
+22:33:38 --- PID 1; epoch 7, batch 3
+22:33:38 --- PID 2; epoch 7, batch 3
+22:33:38 --- PID 0; epoch 7, batch 3
+22:33:38 --- PID 3; epoch 7, batch 3
+22:35:16 --- PID 1; epoch 7, batch 4
+22:35:16 --- PID 2; epoch 7, batch 4
+22:35:16 --- PID 0; epoch 7, batch 4
+22:35:16 --- PID 3; epoch 7, batch 4
+22:36:54 --- PID 1; epoch 7, batch 5
+22:36:54 --- PID 2; epoch 7, batch 5
+22:36:54 --- PID 0; epoch 7, batch 5
+22:36:54 --- PID 3; epoch 7, batch 5
+22:38:32 --- PID 1; epoch 7, batch 6
+22:38:32 --- PID 2; epoch 7, batch 6
+22:38:32 --- PID 0; epoch 7, batch 6
+22:38:32 --- PID 3; epoch 7, batch 6
+22:40:10 --- PID 1; epoch 7, batch 7
+22:40:10 --- PID 2; epoch 7, batch 7
+22:40:10 --- PID 0; epoch 7, batch 7
+22:40:10 --- PID 3; epoch 7, batch 7
+22:41:48 --- PID 1; epoch 7, batch 8
+22:41:48 --- PID 2; epoch 7, batch 8
+22:41:48 --- PID 0; epoch 7, batch 8
+22:41:48 --- PID 3; epoch 7, batch 8
+22:43:25 --- PID 1; epoch 7, batch 9
+22:43:25 --- PID 2; epoch 7, batch 9
+22:43:25 --- PID 0; epoch 7, batch 9
+22:43:25 --- PID 3; epoch 7, batch 9
+22:45:03 --- PID 1; epoch 8, batch 0
+22:45:03 --- PID 2; epoch 8, batch 0
+22:45:03 --- PID 3; epoch 8, batch 0
+22:45:06 --- Epoch: 7	Train loss: 6.2164	Valid loss: 6.2239	Train accuracy: 0.25	Valid accuracy: 0.20
+22:45:06 --- PID 0; epoch 8, batch 0
+22:46:43 --- PID 1; epoch 8, batch 1
+22:46:43 --- PID 2; epoch 8, batch 1
+22:46:43 --- PID 0; epoch 8, batch 1
+22:46:43 --- PID 3; epoch 8, batch 1
+22:48:21 --- PID 1; epoch 8, batch 2
+22:48:21 --- PID 2; epoch 8, batch 2
+22:48:21 --- PID 0; epoch 8, batch 2
+22:48:21 --- PID 3; epoch 8, batch 2
+22:49:59 --- PID 1; epoch 8, batch 3
+22:49:59 --- PID 2; epoch 8, batch 3
+22:49:59 --- PID 0; epoch 8, batch 3
+22:49:59 --- PID 3; epoch 8, batch 3
+22:51:37 --- PID 1; epoch 8, batch 4
+22:51:37 --- PID 2; epoch 8, batch 4
+22:51:37 --- PID 0; epoch 8, batch 4
+22:51:37 --- PID 3; epoch 8, batch 4
+22:53:15 --- PID 1; epoch 8, batch 5
+22:53:15 --- PID 2; epoch 8, batch 5
+22:53:15 --- PID 0; epoch 8, batch 5
+22:53:15 --- PID 3; epoch 8, batch 5
+22:54:52 --- PID 1; epoch 8, batch 6
+22:54:52 --- PID 2; epoch 8, batch 6
+22:54:52 --- PID 0; epoch 8, batch 6
+22:54:52 --- PID 3; epoch 8, batch 6
+22:56:31 --- PID 1; epoch 8, batch 7
+22:56:31 --- PID 2; epoch 8, batch 7
+22:56:31 --- PID 0; epoch 8, batch 7
+22:56:31 --- PID 3; epoch 8, batch 7
+22:58:08 --- PID 1; epoch 8, batch 8
+22:58:08 --- PID 2; epoch 8, batch 8
+22:58:08 --- PID 0; epoch 8, batch 8
+22:58:08 --- PID 3; epoch 8, batch 8
+22:59:45 --- PID 1; epoch 8, batch 9
+22:59:45 --- PID 2; epoch 8, batch 9
+22:59:45 --- PID 0; epoch 8, batch 9
+22:59:45 --- PID 3; epoch 8, batch 9
+23:01:23 --- PID 1; epoch 9, batch 0
+23:01:23 --- PID 2; epoch 9, batch 0
+23:01:23 --- PID 3; epoch 9, batch 0
+23:01:26 --- Epoch: 8	Train loss: 6.2157	Valid loss: 6.2235	Train accuracy: 0.25	Valid accuracy: 0.20
+23:01:26 --- PID 0; epoch 9, batch 0
+23:03:03 --- PID 1; epoch 9, batch 1
+23:03:03 --- PID 2; epoch 9, batch 1
+23:03:03 --- PID 0; epoch 9, batch 1
+23:03:03 --- PID 3; epoch 9, batch 1
+23:04:42 --- PID 1; epoch 9, batch 2
+23:04:42 --- PID 2; epoch 9, batch 2
+23:04:42 --- PID 0; epoch 9, batch 2
+23:04:42 --- PID 3; epoch 9, batch 2
+23:06:19 --- PID 1; epoch 9, batch 3
+23:06:19 --- PID 2; epoch 9, batch 3
+23:06:19 --- PID 0; epoch 9, batch 3
+23:06:19 --- PID 3; epoch 9, batch 3
+23:07:57 --- PID 1; epoch 9, batch 4
+23:07:57 --- PID 2; epoch 9, batch 4
+23:07:57 --- PID 0; epoch 9, batch 4
+23:07:57 --- PID 3; epoch 9, batch 4
+23:09:35 --- PID 1; epoch 9, batch 5
+23:09:35 --- PID 2; epoch 9, batch 5
+23:09:35 --- PID 0; epoch 9, batch 5
+23:09:35 --- PID 3; epoch 9, batch 5
+23:11:12 --- PID 1; epoch 9, batch 6
+23:11:12 --- PID 2; epoch 9, batch 6
+23:11:12 --- PID 0; epoch 9, batch 6
+23:11:12 --- PID 3; epoch 9, batch 6
+23:12:51 --- PID 1; epoch 9, batch 7
+23:12:51 --- PID 2; epoch 9, batch 7
+23:12:51 --- PID 0; epoch 9, batch 7
+23:12:51 --- PID 3; epoch 9, batch 7
+23:14:28 --- PID 1; epoch 9, batch 8
+23:14:28 --- PID 2; epoch 9, batch 8
+23:14:28 --- PID 0; epoch 9, batch 8
+23:14:28 --- PID 3; epoch 9, batch 8
+23:16:05 --- PID 1; epoch 9, batch 9
+23:16:05 --- PID 2; epoch 9, batch 9
+23:16:05 --- PID 0; epoch 9, batch 9
+23:16:05 --- PID 3; epoch 9, batch 9
+23:17:43 --- PID 1; epoch 10, batch 0
+23:17:43 --- PID 2; epoch 10, batch 0
+23:17:43 --- PID 3; epoch 10, batch 0
+23:17:46 --- Epoch: 9	Train loss: 6.2153	Valid loss: 6.2229	Train accuracy: 0.25	Valid accuracy: 0.20
+23:17:46 --- PID 0; epoch 10, batch 0
+23:19:24 --- PID 1; epoch 10, batch 1
+23:19:24 --- PID 2; epoch 10, batch 1
+23:19:24 --- PID 0; epoch 10, batch 1
+23:19:24 --- PID 3; epoch 10, batch 1
+23:21:02 --- PID 1; epoch 10, batch 2
+23:21:02 --- PID 2; epoch 10, batch 2
+23:21:02 --- PID 0; epoch 10, batch 2
+23:21:02 --- PID 3; epoch 10, batch 2
+23:22:39 --- PID 1; epoch 10, batch 3
+23:22:39 --- PID 2; epoch 10, batch 3
+23:22:39 --- PID 0; epoch 10, batch 3
+23:22:39 --- PID 3; epoch 10, batch 3
+23:24:17 --- PID 1; epoch 10, batch 4
+23:24:17 --- PID 2; epoch 10, batch 4
+23:24:17 --- PID 0; epoch 10, batch 4
+23:24:17 --- PID 3; epoch 10, batch 4
+23:25:55 --- PID 1; epoch 10, batch 5
+23:25:55 --- PID 2; epoch 10, batch 5
+23:25:55 --- PID 0; epoch 10, batch 5
+23:25:55 --- PID 3; epoch 10, batch 5
+23:27:33 --- PID 1; epoch 10, batch 6
+23:27:33 --- PID 2; epoch 10, batch 6
+23:27:33 --- PID 0; epoch 10, batch 6
+23:27:33 --- PID 3; epoch 10, batch 6
+23:29:11 --- PID 1; epoch 10, batch 7
+23:29:11 --- PID 2; epoch 10, batch 7
+23:29:11 --- PID 0; epoch 10, batch 7
+23:29:11 --- PID 3; epoch 10, batch 7
+23:30:48 --- PID 1; epoch 10, batch 8
+23:30:48 --- PID 2; epoch 10, batch 8
+23:30:48 --- PID 0; epoch 10, batch 8
+23:30:48 --- PID 3; epoch 10, batch 8
+23:32:26 --- PID 1; epoch 10, batch 9
+23:32:26 --- PID 2; epoch 10, batch 9
+23:32:26 --- PID 0; epoch 10, batch 9
+23:32:26 --- PID 3; epoch 10, batch 9
+23:34:04 --- PID 1; epoch 11, batch 0
+23:34:04 --- PID 2; epoch 11, batch 0
+23:34:04 --- PID 3; epoch 11, batch 0
+23:34:06 --- Epoch: 10	Train loss: 6.2150	Valid loss: 6.2229	Train accuracy: 0.25	Valid accuracy: 0.20
+23:34:06 --- PID 0; epoch 11, batch 0
+23:35:44 --- PID 1; epoch 11, batch 1
+23:35:44 --- PID 2; epoch 11, batch 1
+23:35:44 --- PID 0; epoch 11, batch 1
+23:35:44 --- PID 3; epoch 11, batch 1
+23:37:22 --- PID 1; epoch 11, batch 2
+23:37:22 --- PID 2; epoch 11, batch 2
+23:37:22 --- PID 0; epoch 11, batch 2
+23:37:22 --- PID 3; epoch 11, batch 2
+23:39:00 --- PID 1; epoch 11, batch 3
+23:39:00 --- PID 2; epoch 11, batch 3
+23:39:00 --- PID 0; epoch 11, batch 3
+23:39:00 --- PID 3; epoch 11, batch 3
+23:40:38 --- PID 1; epoch 11, batch 4
+23:40:38 --- PID 2; epoch 11, batch 4
+23:40:38 --- PID 0; epoch 11, batch 4
+23:40:38 --- PID 3; epoch 11, batch 4
+23:42:15 --- PID 1; epoch 11, batch 5
+23:42:15 --- PID 2; epoch 11, batch 5
+23:42:15 --- PID 0; epoch 11, batch 5
+23:42:15 --- PID 3; epoch 11, batch 5
+23:43:53 --- PID 1; epoch 11, batch 6
+23:43:53 --- PID 2; epoch 11, batch 6
+23:43:53 --- PID 0; epoch 11, batch 6
+23:43:53 --- PID 3; epoch 11, batch 6
+23:45:31 --- PID 1; epoch 11, batch 7
+23:45:31 --- PID 2; epoch 11, batch 7
+23:45:31 --- PID 0; epoch 11, batch 7
+23:45:31 --- PID 3; epoch 11, batch 7
+23:47:09 --- PID 1; epoch 11, batch 8
+23:47:09 --- PID 2; epoch 11, batch 8
+23:47:09 --- PID 0; epoch 11, batch 8
+23:47:09 --- PID 3; epoch 11, batch 8
+23:48:46 --- PID 1; epoch 11, batch 9
+23:48:46 --- PID 2; epoch 11, batch 9
+23:48:46 --- PID 0; epoch 11, batch 9
+23:48:46 --- PID 3; epoch 11, batch 9
+23:50:24 --- PID 1; epoch 12, batch 0
+23:50:24 --- PID 2; epoch 12, batch 0
+23:50:24 --- PID 3; epoch 12, batch 0
+23:50:26 --- Epoch: 11	Train loss: 6.2147	Valid loss: 6.2225	Train accuracy: 0.25	Valid accuracy: 0.20
+23:50:26 --- PID 0; epoch 12, batch 0
+23:52:04 --- PID 1; epoch 12, batch 1
+23:52:04 --- PID 2; epoch 12, batch 1
+23:52:04 --- PID 0; epoch 12, batch 1
+23:52:04 --- PID 3; epoch 12, batch 1
+23:53:42 --- PID 1; epoch 12, batch 2
+23:53:42 --- PID 2; epoch 12, batch 2
+23:53:42 --- PID 0; epoch 12, batch 2
+23:53:42 --- PID 3; epoch 12, batch 2
+23:55:20 --- PID 1; epoch 12, batch 3
+23:55:20 --- PID 2; epoch 12, batch 3
+23:55:20 --- PID 0; epoch 12, batch 3
+23:55:20 --- PID 3; epoch 12, batch 3
+23:56:58 --- PID 1; epoch 12, batch 4
+23:56:58 --- PID 2; epoch 12, batch 4
+23:56:58 --- PID 0; epoch 12, batch 4
+23:56:58 --- PID 3; epoch 12, batch 4
+23:58:35 --- PID 1; epoch 12, batch 5
+23:58:35 --- PID 2; epoch 12, batch 5
+23:58:35 --- PID 0; epoch 12, batch 5
+23:58:35 --- PID 3; epoch 12, batch 5
+00:00:13 --- PID 1; epoch 12, batch 6
+00:00:13 --- PID 2; epoch 12, batch 6
+00:00:13 --- PID 0; epoch 12, batch 6
+00:00:13 --- PID 3; epoch 12, batch 6
+00:01:51 --- PID 1; epoch 12, batch 7
+00:01:51 --- PID 2; epoch 12, batch 7
+00:01:51 --- PID 0; epoch 12, batch 7
+00:01:51 --- PID 3; epoch 12, batch 7
+00:03:29 --- PID 1; epoch 12, batch 8
+00:03:29 --- PID 2; epoch 12, batch 8
+00:03:29 --- PID 0; epoch 12, batch 8
+00:03:29 --- PID 3; epoch 12, batch 8
+00:05:06 --- PID 1; epoch 12, batch 9
+00:05:06 --- PID 2; epoch 12, batch 9
+00:05:06 --- PID 0; epoch 12, batch 9
+00:05:06 --- PID 3; epoch 12, batch 9
+00:06:44 --- PID 1; epoch 13, batch 0
+00:06:44 --- PID 2; epoch 13, batch 0
+00:06:44 --- PID 3; epoch 13, batch 0
+00:06:47 --- Epoch: 12	Train loss: 6.2144	Valid loss: 6.2223	Train accuracy: 0.24	Valid accuracy: 0.20
+00:06:47 --- PID 0; epoch 13, batch 0
+00:08:24 --- PID 1; epoch 13, batch 1
+00:08:24 --- PID 2; epoch 13, batch 1
+00:08:24 --- PID 0; epoch 13, batch 1
+00:08:24 --- PID 3; epoch 13, batch 1
+00:10:03 --- PID 1; epoch 13, batch 2
+00:10:03 --- PID 2; epoch 13, batch 2
+00:10:03 --- PID 0; epoch 13, batch 2
+00:10:03 --- PID 3; epoch 13, batch 2
+00:11:40 --- PID 1; epoch 13, batch 3
+00:11:40 --- PID 2; epoch 13, batch 3
+00:11:40 --- PID 0; epoch 13, batch 3
+00:11:40 --- PID 3; epoch 13, batch 3
+00:13:18 --- PID 1; epoch 13, batch 4
+00:13:18 --- PID 2; epoch 13, batch 4
+00:13:18 --- PID 0; epoch 13, batch 4
+00:13:18 --- PID 3; epoch 13, batch 4
+00:14:56 --- PID 1; epoch 13, batch 5
+00:14:56 --- PID 2; epoch 13, batch 5
+00:14:56 --- PID 0; epoch 13, batch 5
+00:14:56 --- PID 3; epoch 13, batch 5
+00:16:34 --- PID 1; epoch 13, batch 6
+00:16:34 --- PID 2; epoch 13, batch 6
+00:16:34 --- PID 0; epoch 13, batch 6
+00:16:34 --- PID 3; epoch 13, batch 6
+00:18:12 --- PID 1; epoch 13, batch 7
+00:18:12 --- PID 2; epoch 13, batch 7
+00:18:12 --- PID 0; epoch 13, batch 7
+00:18:12 --- PID 3; epoch 13, batch 7
+00:19:50 --- PID 1; epoch 13, batch 8
+00:19:50 --- PID 2; epoch 13, batch 8
+00:19:50 --- PID 0; epoch 13, batch 8
+00:19:50 --- PID 3; epoch 13, batch 8
+00:21:27 --- PID 1; epoch 13, batch 9
+00:21:27 --- PID 2; epoch 13, batch 9
+00:21:27 --- PID 0; epoch 13, batch 9
+00:21:27 --- PID 3; epoch 13, batch 9
+00:23:05 --- PID 1; epoch 14, batch 0
+00:23:05 --- PID 2; epoch 14, batch 0
+00:23:05 --- PID 3; epoch 14, batch 0
+00:23:08 --- Epoch: 13	Train loss: 6.2142	Valid loss: 6.2223	Train accuracy: 0.25	Valid accuracy: 0.20
+00:23:08 --- PID 0; epoch 14, batch 0
+00:24:45 --- PID 1; epoch 14, batch 1
+00:24:45 --- PID 2; epoch 14, batch 1
+00:24:45 --- PID 0; epoch 14, batch 1
+00:24:45 --- PID 3; epoch 14, batch 1
+00:26:23 --- PID 1; epoch 14, batch 2
+00:26:23 --- PID 2; epoch 14, batch 2
+00:26:23 --- PID 0; epoch 14, batch 2
+00:26:23 --- PID 3; epoch 14, batch 2
+00:28:01 --- PID 1; epoch 14, batch 3
+00:28:01 --- PID 2; epoch 14, batch 3
+00:28:01 --- PID 0; epoch 14, batch 3
+00:28:01 --- PID 3; epoch 14, batch 3
+00:29:39 --- PID 1; epoch 14, batch 4
+00:29:39 --- PID 2; epoch 14, batch 4
+00:29:39 --- PID 0; epoch 14, batch 4
+00:29:39 --- PID 3; epoch 14, batch 4
+00:31:17 --- PID 1; epoch 14, batch 5
+00:31:17 --- PID 2; epoch 14, batch 5
+00:31:17 --- PID 0; epoch 14, batch 5
+00:31:17 --- PID 3; epoch 14, batch 5
+00:32:54 --- PID 1; epoch 14, batch 6
+00:32:54 --- PID 2; epoch 14, batch 6
+00:32:54 --- PID 0; epoch 14, batch 6
+00:32:54 --- PID 3; epoch 14, batch 6
+00:34:32 --- PID 1; epoch 14, batch 7
+00:34:32 --- PID 2; epoch 14, batch 7
+00:34:32 --- PID 0; epoch 14, batch 7
+00:34:32 --- PID 3; epoch 14, batch 7
+00:36:10 --- PID 1; epoch 14, batch 8
+00:36:10 --- PID 2; epoch 14, batch 8
+00:36:10 --- PID 0; epoch 14, batch 8
+00:36:10 --- PID 3; epoch 14, batch 8
+00:37:47 --- PID 1; epoch 14, batch 9
+00:37:47 --- PID 2; epoch 14, batch 9
+00:37:47 --- PID 0; epoch 14, batch 9
+00:37:47 --- PID 3; epoch 14, batch 9
+00:39:27 --- Epoch: 14	Train loss: 6.2142	Valid loss: 6.2222	Train accuracy: 0.24	Valid accuracy: 0.20
