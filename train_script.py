@@ -11,36 +11,42 @@
 ####
 
 import os
+import sys
 import pickle
 import numpy as np
 import torch
 import torch.distributed as dist
-#import torch.distributed.autograd as dist_autograd
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.multiprocessing as mp
 from datetime import datetime
 from torch.nn.parallel import DistributedDataParallel as DDP
-from torch.distributed.optim import DistributedOptimizer
-from torch.distributed import init_process_group, destroy_process_group
 from torch.utils.data import Dataset, DataLoader
-from torch.utils.data.distributed import DistributedSampler
 
 # Helps identify size of cluster and if this process is the root (rank 0) process.
 WORLD_SIZE = int(os.environ["WORLD_SIZE"]) 
 RANK = int(os.environ["RANK"])
 LOCAL_RANK = int(os.environ["LOCAL_RANK"] or 0)
-# parameters (TODO: hyperparameter search with self-guided genetic algorithm)
 RANDOM_SEED = 42
-LEARNING_RATE = 0.001
+# Note: For L-BFGS this has to be larger (0.1) or convergence takes forever, ADAM adjusts its rate anyway
+LBFGS_LEARNING_RATE = 0.1
+ADAM_LEARNING_RATE = 0.001
+SGD_LEARNING_RATE = 0.01
+LBFGS_MAX_ITER=20
+LBFGS_TOLERANCE=1e-2
 BATCH_SIZE = 64
 N_EPOCHS = 15
 
 IMG_SIZE = 32
 N_CLASSES = 1000
-DATA_PATH = "/s/chopin/b/grad/bdvision/Downloads"
-TRAIN_PATH = DATA_PATH + "/Imagenet" + str(IMG_SIZE) + "_train"
-VAL_PATH = os.path.join(DATA_PATH, 'val_data')
+
+HOME_FOLDER = "/s/chopin/b/grad/bdvision"
+DATA_PATH = f"{HOME_FOLDER}/Downloads"
+#HOME_FOLDER = "/Users/brobert"
+#DATA_PATH = f"{HOME_FOLDER}/Desktop/IMAGENET"
+TRAIN_PATH = f"{DATA_PATH}/Imagenet{IMG_SIZE}_train"
+VAL_PATH = f"{DATA_PATH}/val_data"
+OUTPUT_FOLDER = f"{HOME_FOLDER}/out"
 
 # This is set when the program initalizes
 device = None
@@ -192,51 +198,36 @@ def train(train_loader, model, criterion, optimizer, device):
     running_loss = 0
 
     for X, y_true in train_loader:
-
-        # optimizer.zero_grad()
         X = X.to(device)
         y_true = y_true.to(device)
 
-        '''
-        # Needed for L-BFGS
-        # https://github.com/pytorch/pytorch/issues/30439
-        def closure():
+        if isinstance(optimizer, torch.optim.LBFGS):
+            # Needed for L-BFGS
+            # https://github.com/pytorch/pytorch/issues/30439
+            def closure():
+                optimizer.zero_grad()
+                y_hat, _ = model(X)
+                loss = criterion(y_hat, y_true)
+                loss.backward()
+                # Sync up losses among all workers
+                torch.distributed.all_reduce(loss)
+                loss /= WORLD_SIZE
+                return loss
+
+            loss = optimizer.step(closure)
+            running_loss += loss.item() * X.size(0)
+        else:
+            # The following works for ADAM and SGD optimizers, but not L-BFGS
+            # Forward pass
             optimizer.zero_grad()
-            y_hat, _ = model(X)
-            loss = criterion(y_hat, y_true)
-            loss.backward()
-            torch.distributed.all_reduce(loss)
-            loss /= WORLD_SIZE
-            return loss
-
-        loss = optimizer.step(closure)
-        running_loss += loss * X.size(0)
-
-        # The following works for ADAM optimizer, but not L-BFGS
-        '''
-        # Forward pass
-        optimizer.zero_grad()
-        y_hat, _ = model(X)
-        loss = criterion(y_hat, y_true)
-        running_loss += loss.item() * X.size(0)
-
-        # Backward pass
-        loss.backward()
-        optimizer.step()
-
-        '''
-        # Use distributed autograd (we're not using this at the moment)
-        with dist_autograd.context() as context_id:
             y_hat, _ = model(X)
             loss = criterion(y_hat, y_true)
             running_loss += loss.item() * X.size(0)
 
             # Backward pass
-            #loss.backward()
-            dist_autograd.backward(context_id, [loss])
+            loss.backward()
+            optimizer.step()
 
-            optimizer.step(context_id)
-        '''
     epoch_loss = running_loss / len(train_loader.dataset)
     return model, optimizer, epoch_loss
 
@@ -287,14 +278,12 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
             train_loader = DataLoader(
                 dataset=train_dataset,
                 batch_size=BATCH_SIZE,
-                shuffle=True,
-                #sampler=DistributedSampler(train_dataset)
+                shuffle=True
             )
             valid_loader = DataLoader(
                 dataset=val_dataset,
                 batch_size=BATCH_SIZE,
-                shuffle=True,
-                #sampler=DistributedSampler(val_dataset)
+                shuffle=True
             )
 
             # training
@@ -304,24 +293,21 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
 #                best_loss = train_loss
             train_losses.append(train_loss)
 
-        # validation
-        with torch.no_grad():
-            model, valid_loss = validate(valid_loader, model, criterion, device)
-            valid_losses.append(valid_loss)
-
-# TODO: Add model save, etc from https://github.com/pytorch/examples/blob/main/distributed/ddp-tutorial-series/multinode.py
-#            if LOCAL_RANK == 0 and epoch % self.save_every == 0:
-#                self._save_snapshot(epoch)
         if RANK == 0 :
+            # validation
+            with torch.no_grad():
+                model, valid_loss = validate(valid_loader, model, criterion, device)
+                valid_losses.append(valid_loss)
+
             torch.save(model, "model.pt")
             train_acc = get_accuracy(model, train_loader, device=device)
             valid_acc = get_accuracy(model, valid_loader, device=device)
             train_accs.append(train_acc)
             valid_accs.append(valid_acc)
-            torch.save(train_losses, "train_loss.pt")
-            torch.save(valid_losses, "valid_loss.pt")
-            torch.save(train_accs, "train_accs.pt")
-            torch.save(valid_accs, "valid_accs.pt")
+            torch.save(train_losses, f"{OUTPUT_FOLDER}/train_loss.pt")
+            torch.save(valid_losses, f"{OUTPUT_FOLDER}/valid_loss.pt")
+            torch.save(train_accs, f"{OUTPUT_FOLDER}/train_accs.pt")
+            torch.save(valid_accs, f"{OUTPUT_FOLDER}/valid_accs.pt")
             if (epoch+1) % print_every == 0:
                 print(f'{datetime.now().time().replace(microsecond=0)} --- '
                     f'Epoch: {epoch}\t'
@@ -334,30 +320,34 @@ def training_loop(model, criterion, optimizer, epochs, device, print_every=1):
     return model, optimizer, (train_losses, valid_losses)
 
 ## ------------------------ Main program (init/run)
-def run():
+def run(opt):
     model = DDP(LeNet5(N_CLASSES).to(device))
-    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    # Consider optimizer = torch.optim.LBFGS((loc_param,), lr=0.1, max_iter=500, tolerance_grad=1e-3)
-    # Ideas from this discussion: https://github.com/pytorch/pytorch/issues/30439
-    # optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=20, tolerance_grad=1e-2)
-    # 1) That wasn't right, because we're not dealing with rrefs, 2) Makes more sense for individual nodes to have their own optimizers since we're pooling weights
-    #optimizer = DistributedOptimizer(torch.optim.Adam, model.parameters(), lr=LEARNING_RATE)
+    if opt == "adam":
+        optimizer = torch.optim.Adam(model.parameters(), lr=ADAM_LEARNING_RATE)
+    elif opt == "lbfgs":
+        # Ideas from this discussion: https://github.com/pytorch/pytorch/issues/30439
+        optimizer = torch.optim.LBFGS(model.parameters(), lr=LBFGS_LEARNING_RATE, max_iter=LBFGS_MAX_ITER, tolerance_grad=LBFGS_TOLERANCE)
+    elif opt == "sgd":
+        optimizer = torch.optim.SGD(model.parameters(), lr=SGD_LEARNING_RATE)
+    else:
+        print(f"Optimizer {opt} not supported, sorry!")
+        sys.exit(1)
+    if (RANK == 0):
+        print(f"Configured {opt} optimizer\n")
+
     criterion = nn.CrossEntropyLoss()
 
-    ### Partial starting point for DDP example
-    #ddp_model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[LOCAL_RANK], output_device=LOCAL_RANK)
-    #ddp_model = DDP(model)
     # Note: the training loop sets up the distributed sampler with the data set, in some examples you'd see that here
     # It works this way becasue the data set is not loaded all at once and instead is loaded in the training loop in batches,
     model, optimizer, results = training_loop(model, criterion, optimizer, N_EPOCHS, device)
-
-    # TODO: save results so they can be graphed, etc
-
 
 ## Initialize and run the program
 def init():
     global device
     torch.manual_seed(RANDOM_SEED)
+    if (RANK == 0):
+        os.makedirs(OUTPUT_FOLDER)
+        print(f"Output will be saved in {OUTPUT_FOLDER}")
     ## By setting device tensor.to(device) should always work correctly for CPU and GPU
     if (torch.cuda.device_count() > 0):
         device = torch.device("cuda:{}".format(LOCAL_RANK))
@@ -368,5 +358,7 @@ def init():
     print("Started process " + str(RANK))
 
 if __name__ == "__main__":
+    opt = sys.argv[1] if len(sys.argv) > 0 else "adam"
+    OUTPUT_FOLDER = f"{OUTPUT_FOLDER}/{opt}_{np.random.randint(1000,9999)}"
     init()
-    run()
+    run(opt)
