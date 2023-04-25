@@ -358,7 +358,11 @@ def init():
     print("Started process " + str(RANK))
 
 if __name__ == "__main__":
-    opt = sys.argv[1] if len(sys.argv) > 0 else "adam"
+    if len(sys.argv) > 0:
+        opt = sys.argv[1]
+    else:
+        opt = "adam"
+        
     OUTPUT_FOLDER = f"{OUTPUT_FOLDER}/{opt}_{np.random.randint(1000,9999)}"
     init()
     run(opt)
