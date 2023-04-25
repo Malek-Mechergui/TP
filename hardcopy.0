@@ -1,0 +1,44 @@
+  GNU nano 2.9.8                                                       train_script.py
+
+            torch.save(train_accs, "train_accs.pt")
+            torch.save(valid_accs, "valid_accs.pt")
+            if (epoch+1) % print_every == 0:
+                print(f'{datetime.now().time().replace(microsecond=0)} --- '
+                    f'Epoch: {epoch}\t'
+                    f'Train loss: {train_loss:.4f}\t'
+                    f'Valid loss: {valid_loss:.4f}\t'
+                    f'Train accuracy: {100 * train_acc:.2f}\t'
+                    f'Valid accuracy: {100 * valid_acc:.2f}')
+
+    #plot_losses(train_losses, valid_losses)
+    return model, optimizer, (train_losses, valid_losses)
+
+## ------------------------ Main program (init/run)
+def run():
+    model = DDP(LeNet5(N_CLASSES).to(device))
+    #optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    # Consider optimizer = torch.optim.LBFGS((loc_param,), lr=0.1, max_iter=500, tolerance_grad=1e-3)
+    # Ideas from this discussion: https://github.com/pytorch/pytorch/issues/30439
+    optimizer = torch.optim.LBFGS(model.parameters(), lr=LEARNING_RATE, max_iter=20, tolerance_grad=1e-2)
+    # 1) That wasn't right, because we're not dealing with rrefs, 2) Makes more sense for individual nodes to have their own optimizers since we're po$
+    #optimizer = DistributedOptimizer(torch.optim.Adam, model.parameters(), lr=LEARNING_RATE)
+    criterion = nn.CrossEntropyLoss()
+
+    ### Partial starting point for DDP example
+    #ddp_model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[LOCAL_RANK], output_device=LOCAL_RANK)
+    #ddp_model = DDP(model)
+    # Note: the training loop sets up the distributed sampler with the data set, in some examples you'd see that here
+    # It works this way becasue the data set is not loaded all at once and instead is loaded in the training loop in batches,
+    model, optimizer, results = training_loop(model, criterion, optimizer, N_EPOCHS, device)
+
+    # TODO: save results so they can be graphed, etc
+
+
+## Initialize and run the program
+def init():
+    global device
+    torch.manual_seed(RANDOM_SEED)
+    ## By setting device tensor.to(device) should always work correctly for CPU and GPU
+
+
+(base) austin:~/CS535/TP$
