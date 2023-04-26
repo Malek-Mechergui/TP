@@ -1,0 +1,15 @@
+17:57:34 --- Epoch: 0   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+19:26:41 --- Epoch: 1   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+20:55:48 --- Epoch: 2   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+22:24:58 --- Epoch: 3   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+23:53:51 --- Epoch: 4   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+01:22:04 --- Epoch: 5   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+02:50:50 --- Epoch: 6   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+04:19:50 --- Epoch: 7   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+05:48:39 --- Epoch: 8   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+07:17:32 --- Epoch: 9   Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+08:46:11 --- Epoch: 10  Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+10:15:05 --- Epoch: 11  Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+11:44:00 --- Epoch: 12  Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+13:13:04 --- Epoch: 13  Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
+14:41:55 --- Epoch: 14  Train loss: nan Valid loss: nan Train accuracy: 0.24    Valid accuracy: 0.20
