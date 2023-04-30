@@ -11,7 +11,9 @@ a distributed Torch environment while changing as little as possible so that it 
 
 The initial single-core code is in the notebook `LeNet_IMAGENET.ipynb` and can be executed independently on either
 CPU or GPU.  This allowed us to explore the base model and data set to ensure our network was training appropriately
-before scaling up in a headless torchrun environment.
+before scaling up in a headless torchrun environment.  `LeNet.ipynb` was a warm-up for us to explore LeNet using the
+MNIST data set.  This wasn't part of our experiment directly, but rather a way for us to get up and running quickly
+on the model before switching over to the much more complicated IMAGENET data set.
 
 The same code was modified into a TorchRun-compatible standalone program `train_script.py`.  This can be run on one
 host (single-cpu) as well as multiple via torchrun.  The execution across multiple servers is performed using the
@@ -26,6 +28,13 @@ run multiple trials at the same time without affecting the performance of one an
 Both run scripts have paired `stop_distributed.sh` scripts as well to terminate training as needed.  This allowed us
 to better free-up resources quickly while re-adjusting program code and/or hyper parameters.  In particular this was
 extremely necessary when trying to get L-BFGS to work in a parallel computing environment appropriately.
+
+### Training data
+
+Our training data was obtained from the downsampled IMAGENET data set: https://patrykchrabaszcz.github.io/Imagenet32/
+This requires labels in `imagenet1000_clsidx_to_labels.txt`, validation data in a pickle file `val_data` and finally
+the batched training in pickle files named sequentially `train_data_batch_N` where N ranges from 1 to 10, stored
+in a folder `Imagenet32_train`.  The code also supports the 64x64 data set to allower further exploration.
 
 ### Details about train_script 
 
