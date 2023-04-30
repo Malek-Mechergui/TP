@@ -1,0 +1,37 @@
+(base) baton-rouge:~/CS535/TP/solo_trials/lbfgs$ cd ../../
+(base) baton-rouge:~/CS535/TP$ torchrun --nnodes=1 --node_rank=0 train_script.py lbfgs
+Output will be saved in /s/chopin/b/grad/bdvision/out/lbfgs_6719
+Started process 0
+Configured lbfgs optimizer
+
+22:49:57 --- PID 0; epoch 0, batch 0
+22:50:07 --- PID 0; epoch 0, batch 1
+22:50:16 --- PID 0; epoch 0, batch 2
+22:50:23 --- PID 0; epoch 0, batch 3
+22:50:31 --- PID 0; epoch 0, batch 4
+22:50:40 --- PID 0; epoch 0, batch 5
+22:50:48 --- PID 0; epoch 0, batch 6
+22:50:57 --- PID 0; epoch 0, batch 7
+22:51:05 --- PID 0; epoch 0, batch 8
+22:51:13 --- PID 0; epoch 0, batch 9
+22:51:25 --- Epoch: 0   Train loss: 6.9112      Valid loss: 6.9118      Train accuracy: 0.22    Valid accuracy: 0.18
+22:51:25 --- PID 0; epoch 1, batch 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

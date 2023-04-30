@@ -1,0 +1,42 @@
+        --nproc_per_node=1 \
+        --nnodes=$NUM_NODES \
+        --node_rank=$RANK \
+        --rdzv_id=42424 \
+        --rdzv_backend=c10d \
+        --rdzv_endpoint=$RENDEVOUS_HOST \
+        $TRAIN_SCRIPT "$@" &
+    ((RANK=RANK+1))
+done(base) austin:~/CS535/TP$ torchrun --nnodes=1 --node_rank=0 train_script.py adam
+Output will be saved in /s/chopin/b/grad/bdvision/out/adam_9330
+Started process 0
+Configured adam optimizer
+
+22:48:14 --- PID 0; epoch 0, batch 0
+22:48:26 --- PID 0; epoch 0, batch 1
+22:48:35 --- PID 0; epoch 0, batch 2
+22:48:42 --- PID 0; epoch 0, batch 3
+22:48:51 --- PID 0; epoch 0, batch 4
+22:49:01 --- PID 0; epoch 0, batch 5
+22:49:10 --- PID 0; epoch 0, batch 6
+22:49:20 --- PID 0; epoch 0, batch 7
+22:49:29 --- PID 0; epoch 0, batch 8
+22:49:38 --- PID 0; epoch 0, batch 9
+22:49:50 --- Epoch: 0   Train loss: 6.2160      Valid loss: 6.2212      Train accuracy: 0.26    Valid accuracy: 0.23
+22:49:50 --- PID 0; epoch 1, batch 0
+22:49:54 --- PID 0; epoch 1, batch 1
+22:49:59 --- PID 0; epoch 1, batch 2
+22:50:04 --- PID 0; epoch 1, batch 3
+22:50:08 --- PID 0; epoch 1, batch 4
+22:50:14 --- PID 0; epoch 1, batch 5
+22:50:18 --- PID 0; epoch 1, batch 6
+22:50:24 --- PID 0; epoch 1, batch 7
+22:50:29 --- PID 0; epoch 1, batch 8
+22:50:35 --- PID 0; epoch 1, batch 9
+22:50:44 --- Epoch: 1   Train loss: 6.2152      Valid loss: 6.2186      Train accuracy: 0.26    Valid accuracy: 0.18
+22:50:44 --- PID 0; epoch 2, batch 0
+22:50:50 --- PID 0; epoch 2, batch 1
+22:50:56 --- PID 0; epoch 2, batch 2
+22:51:00 --- PID 0; epoch 2, batch 3
+22:51:06 --- PID 0; epoch 2, batch 4
+22:51:12 --- PID 0; epoch 2, batch 5
+

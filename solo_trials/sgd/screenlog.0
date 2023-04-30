@@ -1,0 +1,172 @@
+cd ../../
+(base) hartford:~/CS535/TP$ torchrun --nnodes=1 n[K--node=[K+_[K[K_rank=0 train_script.py sg d
+Output will be saved in /s/chopin/b/grad/bdvision/out/sgd_8594
+Started process 0
+Configured sgd optimizer
+
+22:52:32 --- PID 0; epoch 0, batch 0
+22:52:40 --- PID 0; epoch 0, batch 1
+22:52:49 --- PID 0; epoch 0, batch 2
+22:52:57 --- PID 0; epoch 0, batch 3
+22:53:05 --- PID 0; epoch 0, batch 4
+22:53:14 --- PID 0; epoch 0, batch 5
+22:53:22 --- PID 0; epoch 0, batch 6
+22:53:31 --- PID 0; epoch 0, batch 7
+22:53:39 --- PID 0; epoch 0, batch 8
+22:53:47 --- PID 0; epoch 0, batch 9
+22:53:59 --- Epoch: 0	Train loss: 6.2602	Valid loss: 6.2619	Train accuracy: 0.24	Valid accuracy: 0.20
+22:53:59 --- PID 0; epoch 1, batch 0
+22:54:04 --- PID 0; epoch 1, batch 1
+22:54:09 --- PID 0; epoch 1, batch 2
+22:54:14 --- PID 0; epoch 1, batch 3
+22:54:19 --- PID 0; epoch 1, batch 4
+22:54:24 --- PID 0; epoch 1, batch 5
+22:54:28 --- PID 0; epoch 1, batch 6
+22:54:32 --- PID 0; epoch 1, batch 7
+22:54:36 --- PID 0; epoch 1, batch 8
+22:54:41 --- PID 0; epoch 1, batch 9
+22:54:48 --- Epoch: 1	Train loss: 6.2339	Valid loss: 6.2377	Train accuracy: 0.25	Valid accuracy: 0.20
+22:54:48 --- PID 0; epoch 2, batch 0
+22:54:53 --- PID 0; epoch 2, batch 1
+22:54:58 --- PID 0; epoch 2, batch 2
+22:55:03 --- PID 0; epoch 2, batch 3
+22:55:08 --- PID 0; epoch 2, batch 4
+22:55:13 --- PID 0; epoch 2, batch 5
+22:55:18 --- PID 0; epoch 2, batch 6
+22:55:23 --- PID 0; epoch 2, batch 7
+22:55:28 --- PID 0; epoch 2, batch 8
+22:55:33 --- PID 0; epoch 2, batch 9
+22:55:40 --- Epoch: 2	Train loss: 6.2271	Valid loss: 6.2315	Train accuracy: 0.25	Valid accuracy: 0.20
+22:55:40 --- PID 0; epoch 3, batch 0
+22:55:45 --- PID 0; epoch 3, batch 1
+22:55:49 --- PID 0; epoch 3, batch 2
+22:55:54 --- PID 0; epoch 3, batch 3
+22:55:59 --- PID 0; epoch 3, batch 4
+22:56:04 --- PID 0; epoch 3, batch 5
+22:56:09 --- PID 0; epoch 3, batch 6
+22:56:14 --- PID 0; epoch 3, batch 7
+22:56:18 --- PID 0; epoch 3, batch 8
+22:56:22 --- PID 0; epoch 3, batch 9
+22:56:28 --- Epoch: 3	Train loss: 6.2237	Valid loss: 6.2284	Train accuracy: 0.24	Valid accuracy: 0.20
+22:56:28 --- PID 0; epoch 4, batch 0
+22:56:33 --- PID 0; epoch 4, batch 1
+22:56:38 --- PID 0; epoch 4, batch 2
+22:56:43 --- PID 0; epoch 4, batch 3
+22:56:48 --- PID 0; epoch 4, batch 4
+22:56:52 --- PID 0; epoch 4, batch 5
+22:56:57 --- PID 0; epoch 4, batch 6
+22:57:01 --- PID 0; epoch 4, batch 7
+22:57:05 --- PID 0; epoch 4, batch 8
+22:57:10 --- PID 0; epoch 4, batch 9
+22:57:16 --- Epoch: 4	Train loss: 6.2221	Valid loss: 6.2267	Train accuracy: 0.23	Valid accuracy: 0.20
+22:57:16 --- PID 0; epoch 5, batch 0
+22:57:21 --- PID 0; epoch 5, batch 1
+22:57:26 --- PID 0; epoch 5, batch 2
+22:57:31 --- PID 0; epoch 5, batch 3
+22:57:36 --- PID 0; epoch 5, batch 4
+22:57:41 --- PID 0; epoch 5, batch 5
+22:57:46 --- PID 0; epoch 5, batch 6
+22:57:51 --- PID 0; epoch 5, batch 7
+22:57:56 --- PID 0; epoch 5, batch 8
+22:58:01 --- PID 0; epoch 5, batch 9
+22:58:09 --- Epoch: 5	Train loss: 6.2209	Valid loss: 6.2258	Train accuracy: 0.23	Valid accuracy: 0.20
+22:58:09 --- PID 0; epoch 6, batch 0
+22:58:13 --- PID 0; epoch 6, batch 1
+22:58:17 --- PID 0; epoch 6, batch 2
+22:58:21 --- PID 0; epoch 6, batch 3
+22:58:25 --- PID 0; epoch 6, batch 4
+22:58:28 --- PID 0; epoch 6, batch 5
+22:58:33 --- PID 0; epoch 6, batch 6
+22:58:37 --- PID 0; epoch 6, batch 7
+22:58:41 --- PID 0; epoch 6, batch 8
+22:58:45 --- PID 0; epoch 6, batch 9
+22:58:51 --- Epoch: 6	Train loss: 6.2200	Valid loss: 6.2249	Train accuracy: 0.25	Valid accuracy: 0.20
+22:58:51 --- PID 0; epoch 7, batch 0
+22:58:56 --- PID 0; epoch 7, batch 1
+22:59:02 --- PID 0; epoch 7, batch 2
+22:59:07 --- PID 0; epoch 7, batch 3
+22:59:12 --- PID 0; epoch 7, batch 4
+22:59:17 --- PID 0; epoch 7, batch 5
+22:59:22 --- PID 0; epoch 7, batch 6
+22:59:26 --- PID 0; epoch 7, batch 7
+22:59:29 --- PID 0; epoch 7, batch 8
+22:59:35 --- PID 0; epoch 7, batch 9
+22:59:42 --- Epoch: 7	Train loss: 6.2196	Valid loss: 6.2239	Train accuracy: 0.25	Valid accuracy: 0.20
+22:59:42 --- PID 0; epoch 8, batch 0
+22:59:48 --- PID 0; epoch 8, batch 1
+22:59:53 --- PID 0; epoch 8, batch 2
+22:59:58 --- PID 0; epoch 8, batch 3
+23:00:03 --- PID 0; epoch 8, batch 4
+23:00:08 --- PID 0; epoch 8, batch 5
+23:00:13 --- PID 0; epoch 8, batch 6
+23:00:18 --- PID 0; epoch 8, batch 7
+23:00:22 --- PID 0; epoch 8, batch 8
+23:00:27 --- PID 0; epoch 8, batch 9
+23:00:35 --- Epoch: 8	Train loss: 6.2191	Valid loss: 6.2238	Train accuracy: 0.25	Valid accuracy: 0.20
+23:00:35 --- PID 0; epoch 9, batch 0
+23:00:40 --- PID 0; epoch 9, batch 1
+23:00:45 --- PID 0; epoch 9, batch 2
+23:00:50 --- PID 0; epoch 9, batch 3
+23:00:55 --- PID 0; epoch 9, batch 4
+23:01:00 --- PID 0; epoch 9, batch 5
+23:01:05 --- PID 0; epoch 9, batch 6
+23:01:10 --- PID 0; epoch 9, batch 7
+23:01:14 --- PID 0; epoch 9, batch 8
+23:01:19 --- PID 0; epoch 9, batch 9
+23:01:27 --- Epoch: 9	Train loss: 6.2187	Valid loss: 6.2233	Train accuracy: 0.25	Valid accuracy: 0.20
+23:01:27 --- PID 0; epoch 10, batch 0
+23:01:32 --- PID 0; epoch 10, batch 1
+23:01:37 --- PID 0; epoch 10, batch 2
+23:01:42 --- PID 0; epoch 10, batch 3
+23:01:47 --- PID 0; epoch 10, batch 4
+23:01:52 --- PID 0; epoch 10, batch 5
+23:01:57 --- PID 0; epoch 10, batch 6
+23:02:02 --- PID 0; epoch 10, batch 7
+23:02:06 --- PID 0; epoch 10, batch 8
+23:02:10 --- PID 0; epoch 10, batch 9
+23:02:17 --- Epoch: 10	Train loss: 6.2183	Valid loss: 6.2232	Train accuracy: 0.25	Valid accuracy: 0.20
+23:02:17 --- PID 0; epoch 11, batch 0
+23:02:21 --- PID 0; epoch 11, batch 1
+23:02:26 --- PID 0; epoch 11, batch 2
+23:02:32 --- PID 0; epoch 11, batch 3
+23:02:37 --- PID 0; epoch 11, batch 4
+23:02:42 --- PID 0; epoch 11, batch 5
+23:02:47 --- PID 0; epoch 11, batch 6
+23:02:52 --- PID 0; epoch 11, batch 7
+23:02:57 --- PID 0; epoch 11, batch 8
+23:03:02 --- PID 0; epoch 11, batch 9
+23:03:10 --- Epoch: 11	Train loss: 6.2183	Valid loss: 6.2227	Train accuracy: 0.24	Valid accuracy: 0.20
+23:03:10 --- PID 0; epoch 12, batch 0
+23:03:15 --- PID 0; epoch 12, batch 1
+23:03:20 --- PID 0; epoch 12, batch 2
+23:03:25 --- PID 0; epoch 12, batch 3
+23:03:30 --- PID 0; epoch 12, batch 4
+23:03:36 --- PID 0; epoch 12, batch 5
+23:03:41 --- PID 0; epoch 12, batch 6
+23:03:46 --- PID 0; epoch 12, batch 7
+23:03:50 --- PID 0; epoch 12, batch 8
+23:03:54 --- PID 0; epoch 12, batch 9
+23:03:59 --- Epoch: 12	Train loss: 6.2180	Valid loss: 6.2227	Train accuracy: 0.25	Valid accuracy: 0.20
+23:03:59 --- PID 0; epoch 13, batch 0
+23:04:04 --- PID 0; epoch 13, batch 1
+23:04:10 --- PID 0; epoch 13, batch 2
+23:04:15 --- PID 0; epoch 13, batch 3
+23:04:20 --- PID 0; epoch 13, batch 4
+23:04:25 --- PID 0; epoch 13, batch 5
+23:04:29 --- PID 0; epoch 13, batch 6
+23:04:33 --- PID 0; epoch 13, batch 7
+23:04:36 --- PID 0; epoch 13, batch 8
+23:04:41 --- PID 0; epoch 13, batch 9
+23:04:48 --- Epoch: 13	Train loss: 6.2178	Valid loss: 6.2225	Train accuracy: 0.24	Valid accuracy: 0.20
+23:04:48 --- PID 0; epoch 14, batch 0
+23:04:53 --- PID 0; epoch 14, batch 1
+23:04:58 --- PID 0; epoch 14, batch 2
+23:05:03 --- PID 0; epoch 14, batch 3
+23:05:08 --- PID 0; epoch 14, batch 4
+23:05:13 --- PID 0; epoch 14, batch 5
+23:05:18 --- PID 0; epoch 14, batch 6
+23:05:23 --- PID 0; epoch 14, batch 7
+23:05:28 --- PID 0; epoch 14, batch 8
+23:05:34 --- PID 0; epoch 14, batch 9
+23:05:42 --- Epoch: 14	Train loss: 6.2177	Valid loss: 6.2222	Train accuracy: 0.24	Valid accuracy: 0.20
+(base) hartford:~/CS535/TP$ 
