@@ -49,7 +49,7 @@ where [OPTIMIZER] is one of the following: adam, sgd, lbfgs.  As stated earlier,
 the run_distributed shell script to ensure that the appropriate command is executed on each host and also assign the
 correct sequential rank to each.
 
-Once the program begins, a communication backend is chosen based on the computation style available.  If GPU is used
+Once the program begins, a communication backend is chosen based on the computation style available.  If CUDA is available
 then NCCL is used, otherwise GLOO is used as a communication backend.  The model and optimizer are wrapped with the 
 apporiate Torch Distributed classes.  These handle all the necessary synchronization at the beginning of each epoch and 
 forward pass.  However, some additional logic was necessary (as noted in the code) to keep L-BFGS stable, which is 
@@ -82,6 +82,20 @@ during this process.  This stabalizes training, but the added communication acro
 result we still needed to find a balance of fewer passes to balance this out somewhat.
 
 The code in its current form represents this final compromise of parameters.
+
+## Additional observations
+
+A lot of the source documentation we reviewed almost extensively discusses running multiple GPUs on a single machine, and
+this seems to be the bigger strength for Torch Distributed.  Though training across multiple machines is certainly another
+key feature, the lack of observability of various components make it difficult to examine and understand communication
+bottlenecks.  It seems that the default behavior synchronizes during the forward pass rather than at the end of an epoch,
+so impending effects of network bandwidth are very evident when comparing the performance across multiple machines!  This
+would not be as present in a single machine with multiple GPUs since intra-process communication is not as expensive of a
+problem.
+
+Torch Lightning is likely the best way to go compared to the route which we chose, and in addition to further study of
+network bandwidth on training time, a better comparison to Torch Lightning would be a good target for additional exploration
+as well.
 
 ## Data results
 
